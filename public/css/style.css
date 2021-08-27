@@ -1,0 +1,113 @@
+.primary_blue_bg{
+    background-color:blue;
+    color:white;
+}
+
+.bg-blue{
+    background-color: #5B73B4!important;
+}
+
+.bg-blue-light{
+    background-color:#C0CBE9!important;
+}
+
+.bg-blue-button{
+    background-color: #496BC6!important;
+}
+
+
+.bg-gray{
+    background-color: #adadad!important;
+}
+
+legend.scheduler-border {
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+}
+
+/* Progressbar */
+
+.progressbar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    counter-reset: step;
+    margin: 2rem 0 4rem;
+    z-index:100;
+}
+
+.before-bar,
+.progress {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    background-color: #dcdcdc;
+    z-index: 5;
+}
+
+.progress {
+    /*background-color: var(--primary-color);*/
+    width: 0%;
+    transition: 0.3s;
+}
+
+.progress-step {
+    width: 4rem;
+    height: 4rem;
+    background-color: #dcdcdc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+
+.progress-step::before {
+    counter-increment: step;
+    content: counter(step);
+}
+
+.progress-step::after {
+    content: attr(data-title);
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.form-step {
+    display: none;
+    transform-origin: top;
+    animation: animate 0.5s;
+}
+
+.form-step-active {
+    display: block;
+}
+
+.input-group {
+    margin: 2rem 0;
+}
+
+@keyframes animate {
+    from {
+        transform: scale(1, 0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+}
+
+
+.progress-step-active {
+    background-color: #5B73B4;
+    color: #f3f3f3;
+    z-index: 5;
+}
+
