@@ -11,6 +11,9 @@ use App\Models\Pays;
 use App\Models\Secteur_activite;
 use App\Models\Critere_adjudication;
 use App\Models\Client;
+use App\Models\Statut;
+use App\Models\Type;
+use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -40,9 +43,13 @@ class AoController extends Controller
         $secteur_activites = Secteur_activite::orderBy('secteur')->get();
         $pays = Pays::orderBy('pays')->get();
         $ministere_tuelles = ministere_de_tuelle::orderBy('ministere')->get();
-        $criteres = Critere_selection::orderBy('critere')->get();
+        $criteres_selections = Critere_selection::orderBy('critere')->get();
+        $types = Type::orderBy('type')->get();
         $clients = Client::orderBy('client')->get();
-        return view('pages.aos.ajouter', compact('bus', 'departements', 'pays', 'secteur_activites', 'ministere_tuelles', 'criteres', 'clients'));
+        $secretaires = Utilisateur::with(['statut'=>function($query){$query->where('statut', 'secretaire');}])->orderBy('nom_prenom')->get();
+        //dd(Statut::all());
+        //dd($secretaires);
+        return view('pages.aos.ajouter', compact('types', 'bus', 'departements', 'pays', 'secretaires', 'secteur_activites', 'ministere_tuelles', 'criteres_selections', 'clients'));
     }
 
     /**

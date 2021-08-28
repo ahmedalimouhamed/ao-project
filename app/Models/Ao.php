@@ -25,6 +25,10 @@ class Ao extends Model
         return $this->hasMany(Fichier::class);
     }
 
+    public function type():BelongsTo{
+        return $this->belongsTo(Type::class);
+    }
+
     public function pays():BelongsTo{
         return $this->belongsTo(Pays::class);
     }
@@ -39,6 +43,11 @@ class Ao extends Model
 
     public function concurrents():BelongsToMany{
         return $this->belongsToMany(Concurrent::class);
+    }
+
+    /****secretaire***/
+    public function utilisateurs():BelongsToMany{
+        return $this->belongsToMany(Secritaire::class, 'ao_utilisateur', 'appel_offre_id');
     }
 
     public function bus():BelongsToMany{

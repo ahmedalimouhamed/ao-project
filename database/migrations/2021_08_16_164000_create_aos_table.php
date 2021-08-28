@@ -15,24 +15,30 @@ class CreateAosTable extends Migration
     {
         Schema::create('aos', function (Blueprint $table) {
             $table->id();
+
+            /**section_1**/
             $table->string('num_AO')->unique();
-            $table->string('num_marche');
-            $table->string('client');
             $table->text('objet');
             $table->date('date_limite');
             $table->string('partenariat');
             $table->string('adjudication');
-            $table->string('adjudicataire');
+            $table->integer('n_lot')->unsigned();
             $table->float('budget', 10,2);
             $table->float('montant_soumission', 10,2);
-            $table->float('montant_moins_disant', 10,2);
+            $table->float('montant_c_p', 10,2);
             $table->date('date_adjudication')->nullable();
-            $table->text('motif_rejet')->nullable();
-            $table->text('adresse');
-            $table->string('geom');
+            $table->string('RC');
+            $table->string('CPS');
+            $table->foreignId('client_id')->constrained('clients');
+            $table->foreignId('type_id')->constrained('types');
             $table->foreignId('pays_id')->constrained('pays');
+            $table->foreignId('critere_selection_id')->constrained('critere_selections');
             $table->foreignId('secteur_id')->constrained('secteur_activites');
             $table->foreignId('ministere_id')->constrained('ministere_de_tuelles');
+
+            /**section_3**/
+            $table->text('adresse');
+            $table->string('geom');
             $table->timestamps();
         });
     }

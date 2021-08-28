@@ -7,6 +7,9 @@ use App\Http\Controllers\ConcurrentController;
 use App\Http\Controllers\BuController;
 use App\Http\Controllers\DepartementController;
 
+
+use App\Http\Controllers\MultiselectController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +26,12 @@ Route::get('/', function () {
     return view('layouts.admin_layout');
 });
 
+
+Route::get('multiselect', function(){
+    return view('layouts.multiselect');
+});
+
+Route::post('multiselect', [MultiselectController::class, 'store'])->name('multiselect.store');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
